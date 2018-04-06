@@ -256,7 +256,7 @@ namespace System.Windows.Controls
 
 		public bool ClearSelection()
 		{
-			if (SelectedItems.Count > 0)
+			if (SelectedItems != null && SelectedItems.Count > 0)
 			{
 				// Make a copy of the list and ignore changes to the selection while raising events
 				foreach (var selItem in new ArrayList(SelectedItems))
@@ -379,14 +379,18 @@ namespace System.Windows.Controls
 
 		internal bool ClearSelectionByRectangle()
 		{
-			foreach (var item in new ArrayList(SelectedItems))
-			{
-				var e = new PreviewSelectionChangedEventArgs(false, item);
-				OnPreviewSelectionChanged(e);
-				if (e.CancelAny) return false;
-			}
-			
-			SelectedItems.Clear();
+            if (SelectedItems != null)
+            {
+                foreach (var item in new ArrayList(SelectedItems))
+                {
+                    var e = new PreviewSelectionChangedEventArgs(false, item);
+                    OnPreviewSelectionChanged(e);
+                    if (e.CancelAny) return false;
+                }
+
+                SelectedItems.Clear();
+            }
+
 			return true;
 		}
 
@@ -496,7 +500,7 @@ namespace System.Windows.Controls
 				case NotifyCollectionChangedAction.Reset:
 					// If the items list has considerably changed, the selection is probably
 					// useless anyway, clear it entirely.
-					SelectedItems.Clear();
+					SelectedItems?.Clear();
 					break;
 			}
 			

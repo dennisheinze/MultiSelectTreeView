@@ -490,7 +490,7 @@ namespace System.Windows.Controls
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
-			if (ParentTreeView != null && ParentTreeView.SelectedItems.Contains(DataContext))
+			if (ParentTreeView?.SelectedItems?.Contains(DataContext) == true)
 			{
 				IsSelected = true;
 			}
@@ -696,7 +696,7 @@ namespace System.Windows.Controls
 					parentTV = ParentTreeView;
 					if (parentTV == null)
 						parentTV = lastParentTreeView;
-					if (parentTV != null)
+					if (parentTV?.SelectedItems != null)
 					{
 						var selection = new object[parentTV.SelectedItems.Count];
 						parentTV.SelectedItems.CopyTo(selection, 0);

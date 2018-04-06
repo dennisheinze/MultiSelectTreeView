@@ -92,7 +92,14 @@ namespace System.Windows.Controls
 			// Capture the mouse right now so that the MouseUp event will not be missed
 			Mouse.Capture(treeView);
 
-			initialSelection = new HashSet<object>(treeView.SelectedItems.Cast<object>());
+            if (treeView.SelectedItems != null)
+            {
+                initialSelection = new HashSet<object>(treeView.SelectedItems.Cast<object>());
+            }
+            else
+            {
+                initialSelection = null;
+            }
 		}
 
 		private void OnMouseMove(object sender, MouseEventArgs e)
