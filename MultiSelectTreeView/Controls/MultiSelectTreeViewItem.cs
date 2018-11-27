@@ -435,6 +435,7 @@ namespace System.Windows.Controls
 				}
 			}
 
+            /*
 			if (e.Property.Name == "IsExpanded")
 			{
 				// Bring newly expanded child nodes into view if they'd be outside of the current view
@@ -468,8 +469,9 @@ namespace System.Windows.Controls
 					}
 				}
 			}
+            */
 
-			base.OnPropertyChanged(e);
+            base.OnPropertyChanged(e);
 		}
 
 		protected override DependencyObject GetContainerForItemOverride()
